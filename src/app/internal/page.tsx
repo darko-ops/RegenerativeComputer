@@ -13,8 +13,16 @@ export const metadata: Metadata = {
 };
 
 type Row = Record<string, unknown>;
+type Field = [key: string, label: string, format?: (value: unknown) => string];
 
-const RFQ_FIELDS: [string, string][] = [
+const usd = (max: number) => (value: unknown) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: max,
+  }).format(Number(value));
+
+const RFQ_FIELDS: Field[] = [
   ["gpu_model", "GPU"],
   ["gpu_model_other", "GPU (other)"],
   ["gpu_quantity", "Quantity"],
@@ -30,12 +38,12 @@ const RFQ_FIELDS: [string, string][] = [
   ["interruptible", "Interruptible"],
   ["flexible_schedule", "Flexible schedule"],
   ["current_provider", "Current provider"],
-  ["current_price_per_gpu_hour", "Current $/GPU-hr"],
-  ["max_budget", "Max budget"],
+  ["current_price_per_gpu_hour", "Current $/GPU-hr", usd(2)],
+  ["max_budget", "Max budget", usd(0)],
   ["notes", "Notes"],
 ];
 
-const SUPPLY_FIELDS: [string, string][] = [
+const SUPPLY_FIELDS: Field[] = [
   ["company_website", "Website"],
   ["gpu_inventory", "Inventory"],
   ["locations", "Locations"],
@@ -62,15 +70,18 @@ function formatTimestamp(value: unknown) {
     : date.toISOString().replace("T", " ").slice(0, 16) + " UTC";
 }
 
-function Record({
-  row,
-  fields,
-}: {
-  row: Row;
-  fields: [string, string][];
-}) {
+function Record({ row, fields }: { row: Row; fields: Field[] }) {
   const entries = fields
-    .map(([key, label]) => [label, render(row[key])] as const)
+    .map(([key, label, format]) => {
+      const raw = row[key];
+      const value =
+        raw === null || raw === undefined || raw === ""
+          ? null
+          : format
+            ? format(raw)
+            : render(raw);
+      return [label, value] as const;
+    })
     .filter(([, value]) => value !== null);
 
   return (
@@ -169,7 +180,7 @@ export default async function InternalPage({
   ]);
 
   const rows = tab === "supply" ? partners : rfqs;
-  const fields = tab === "supply" ? SUPPLY_FIELDS : RFQ_FIELDS;
+  const fields: Field[] = tab === "supply" ? SUPPLY_FIELDS : RFQ_FIELDS;
 
   const tabs = [
     { key: "rfq", label: "Compute requests", count: rfqs.length },
