@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  /* Surfaces — warm paper, not screen white */
+  --color-paper: #fbfaf8;
+  --color-paper-sunk: #f4f2ee;
+  --color-paper-raised: #ffffff;
+
+  /* Ink */
+  --color-ink: #14140f;
+  --color-ink-soft: #4a4740;
+  --color-ink-muted: #7c786f;
+  --color-ink-faint: #a5a096;
+
+  /* Structure */
+  --color-rule: #e3dfd7;
+  --color-rule-strong: #cfcabf;
+
+  /* Restrained accent — used for state, never decoration */
+  --color-signal: #2f5d47;
+  --color-signal-soft: #e8efe9;
+
+  --font-display: var(--font-display), ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Tabular figures for every data surface */
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
