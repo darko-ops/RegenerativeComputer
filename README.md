@@ -53,14 +53,15 @@ database errors to the visitor.
 
 ## Icon
 
-`src/app/icon.svg` is "RC" in **IBM Plex Mono Medium (500)** — the same face as the header
-wordmark and the Request Compute button — at the same `0.12em` tracking, paper on ink.
+`src/app/icon.svg` is "RC" in **IBM Plex Mono Regular (400)** — the same face and weight as
+the header wordmark and the Request Compute button — at the same `0.12em` tracking, paper
+on ink.
 
 The glyphs are converted to vector outlines, not `<text>`, so the mark does not depend on
 the font being installed on the viewer's machine. `apple-icon.png` (180px) and
 `favicon.ico` (32px) are rasterized from the same SVG.
 
-To regenerate: extract the `R` and `C` outlines from IBM Plex Mono Medium with
+To regenerate: extract the `R` and `C` outlines from IBM Plex Mono Regular with
 `opentype.js`, lay them out at 0.12em tracking, scale the combined bounding box to 46 of a
 64-unit square, and centre it optically on that box rather than on font metrics.
 
