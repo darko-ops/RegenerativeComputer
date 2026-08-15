@@ -27,8 +27,7 @@ export function SiteHeader() {
           className="label shrink-0 text-ink transition-opacity hover:opacity-60"
           onClick={() => setOpen(false)}
         >
-          <span className="hidden sm:inline">Regenerative Computer</span>
-          <span className="sm:hidden">Regenerative</span>
+          Regenerative Computer
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
