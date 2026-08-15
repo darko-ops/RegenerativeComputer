@@ -14,7 +14,6 @@ const COLUMNS = [
     links: [
       { href: "/research", label: "Research" },
       { href: "/about", label: "About" },
-      { href: "mailto:hello@regenerativecomputer.com", label: "Contact" },
     ],
   },
 ];

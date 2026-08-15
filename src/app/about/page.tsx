@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Eyebrow, PrimaryLink } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -35,25 +36,27 @@ export default function AboutPage() {
         <div className="mx-auto max-w-3xl px-6 py-14">
           <dl className="grid gap-px border border-rule bg-rule sm:grid-cols-2">
             <div className="bg-paper p-7">
-              <dt className="label text-ink-faint">Contact</dt>
-              <dd className="mt-3 text-sm text-ink-soft">
-                <a
-                  href="mailto:hello@regenerativecomputer.com"
+              <dt className="label text-ink-faint">Need capacity</dt>
+              <dd className="mt-3 text-sm leading-relaxed text-ink-soft">
+                <Link
+                  href="/compute"
                   className="underline underline-offset-4 transition-colors hover:text-ink"
                 >
-                  hello@regenerativecomputer.com
-                </a>
+                  Submit a compute request
+                </Link>
+                . One specification, competing offers.
               </dd>
             </div>
             <div className="bg-paper p-7">
-              <dt className="label text-ink-faint">Compute requests</dt>
-              <dd className="mt-3 text-sm text-ink-soft">
-                <a
-                  href="mailto:rfq@regenerativecomputer.com"
+              <dt className="label text-ink-faint">Have capacity</dt>
+              <dd className="mt-3 text-sm leading-relaxed text-ink-soft">
+                <Link
+                  href="/supply"
                   className="underline underline-offset-4 transition-colors hover:text-ink"
                 >
-                  rfq@regenerativecomputer.com
-                </a>
+                  Register as a supply partner
+                </Link>
+                . We route qualified requirements to you.
               </dd>
             </div>
           </dl>

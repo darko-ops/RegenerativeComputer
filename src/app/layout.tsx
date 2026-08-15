@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Newsreader, Inter, IBM_Plex_Mono } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
@@ -23,7 +24,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://regenerativecomputer.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Regenerative Computer — The execution layer for compute",
     template: "%s — Regenerative Computer",

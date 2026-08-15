@@ -13,7 +13,7 @@ function toObject(formData: FormData) {
 }
 
 const GENERIC_ERROR =
-  "We could not record your submission. Email hello@regenerativecomputer.com and we will pick it up directly.";
+  "We could not record your submission — the fault is ours, not yours. Please try again in a moment.";
 
 export async function submitRfq(
   _prev: FormState,
